@@ -121,6 +121,11 @@ Nexus is a repository manager. It allows you to proxy, collect, and manage your 
 
 access Nexus to check how the artifact has been published:
 
+  > in browser: http://localhost:9001
+
+user: admin
+password: admin123 
+
 the last stage in CI part consist on performing a push action to GitOps repository. In this stage, content from GitOps repo is cloned, commit information is updated in cloned files (Kubernentes descriptors) and a push is done. 
 
 watch the video..!

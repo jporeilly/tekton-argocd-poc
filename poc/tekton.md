@@ -14,13 +14,13 @@ CD stages implemented by ArgoCD:
 
 directory structure:  
 
-**poc:** 
+**poc:**   
 this is the main directory. contains 3 scripts:
 * create-local-cluster.sh: this script creates a local Kubernetes cluster based on K3D.
 * delete-local-cluster.sh: this script removes the local cluster
 * setup-poc.sh: this script installs and configure everything neccessary in the cluster (Tekton, Argo CD, Nexus, SonarQube, etc...)
   
-**resources:** 
+**resources:**   
 directory used to manage the two repositories (code and gitops):
 * sources-repo: source code of the app 
 * gitops-repo: repository used for Kubernetes deployment YAML files.

@@ -27,7 +27,24 @@ directory used to manage the two repositories (code and gitops):
 
 ---
 
-#### <font color='red'> 3.1.1 Install k3s Rancher</font>
+## <font color='red'>Pre-requsites</font>
+* ensure centos is the owner
+```
+cd tekton-argocd-poc
+sudo chown -R centos tekton-argocd-poc
+```
+* ensure the folwoing files are +x
+```
+cd tekton-argocd-poc/poc
+sudo chmod +x create-local-cluster.sh
+sudo chmod +x delete-local-cluster.sh
+sudo chmod +x setup-poc.sh
+```
+
+---
+
+
+#### <font color='red'>Install k3s Rancher</font>
 k3d is a lightweight wrapper to run k3s (Rancher Lab’s minimal Kubernetes distribution) in docker.
 k3d makes it very easy to create single- and multi-node k3s clusters in docker, e.g. for local development on Kubernetes.
 
@@ -45,7 +62,7 @@ create k3d cluster:
 
 ---
 
-#### <font color='red'> 3.1.2 Install Tekton + Argo CD</font>
+#### <font color='red'>Install Tekton + Argo CD</font>
 The POC script:
 * Installs Tekton + Argo CD, including secrets to access to Git repo
 * Creates the volume and claim necessary to execute pipelines
@@ -92,7 +109,6 @@ kubectl get pods -n cicd -l "tekton.dev/pipelineRun=products-ci-pipelinerun"
 ```
 
 **Sonarqube**
-
 to access Sonarqube to check quality issues:
 
   > in browser: http://localhost:9000/projects
@@ -101,10 +117,9 @@ user: admin
 password: admin123  
 
 **Nexus**
+Nexus is a repository manager. It allows you to proxy, collect, and manage your dependencies so that you are not constantly juggling a collection of JARs.
 
 access Nexus to check how the artifact has been published:
-
-Nexus is a repository manager. It allows you to proxy, collect, and manage your dependencies so that you are not constantly juggling a collection of JARs. 
 
 the last stage in CI part consist on performing a push action to GitOps repository. In this stage, content from GitOps repo is cloned, commit information is updated in cloned files (Kubernentes descriptors) and a push is done. 
 
@@ -130,7 +145,6 @@ In this dashboard you should be the "product service" application that manages s
 The application is "healthy" but as the objects associated with Product Service (Pods, Services, Deployment,...etc) aren't still deployed to the Kubernetes cluster sync status is "unknown".
 
 Once the "pipelinerun" ends and changes are pushed to GitOps repository, Argo CD compares content deployed in the Kubernetes cluster (associated to Products Service) with content pushed to the GitOps repository and synchronizes Kubernetes cluster against the repository.
-
 
 
 clean up:

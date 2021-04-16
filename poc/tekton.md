@@ -1,4 +1,4 @@
-## <font color='red'> 3.1 ArgoCD + Tekton POC</font>
+## <font color='red'>ArgoCD + Tekton POC</font>
 This POC illustrates GitOps CI/CD pipelines. 
 
 CI stages implemented by Tekton:

@@ -31,5 +31,5 @@ spec:
         cat $(params.deployment-file)
 
         git add -u
-        git commit -m "[tekton] updating deployment"
+        git commit -m "[jporeilly] updating deployment"
         git push

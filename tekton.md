@@ -85,7 +85,38 @@ The POC script:
 
 ---
 
-#### <font color='red'> 3.1.3 Access Tekton + Argo CD + Tests</font>
+#### <font color='red'>Tekton Pipelines</font>
+
+Simple Hello World example to show you how to:
+* create a Task
+* create a Pipeline containing your Tasks
+* use a TaskRun to instantiate and execute a Task outside of a Pipeline
+* use a PipelineRun to instantiate and run a Pipeline containing your Tasks
+
+create a task
+```
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: echo-hello-world
+spec:
+  steps:
+    - name: echo
+      image: ubuntu
+      command:
+        - echo
+      args:
+        - "Hello World"
+```
+A Task defines a series of steps that run in a desired order and complete a set amount of build work. Every Task runs as a Pod on your Kubernetes cluster with each step as its own container. 
+
+save as: helloworld-task.yaml
+
+
+
+
+
+#### <font color='red'>Access Tekton + Argo CD + Tests</font>
 
 **Tekton**  
 
@@ -150,6 +181,9 @@ In this dashboard you should be the "product service" application that manages s
 The application is "healthy" but as the objects associated with Product Service (Pods, Services, Deployment,...etc) aren't still deployed to the Kubernetes cluster sync status is "unknown".
 
 Once the "pipelinerun" ends and changes are pushed to GitOps repository, Argo CD compares content deployed in the Kubernetes cluster (associated to Products Service) with content pushed to the GitOps repository and synchronizes Kubernetes cluster against the repository.
+
+
+
 
 
 clean up:

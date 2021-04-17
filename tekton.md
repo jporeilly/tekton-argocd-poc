@@ -86,6 +86,8 @@ The POC script:
 ---
 
 #### <font color='red'>Tekton Pipelines</font>
+List of Tekton Pipelines:
+* helloworld
 
 Simple Hello World example to show you how to:
 * create a Task

@@ -104,22 +104,15 @@ details about your created Task:
 ```
 tkn task describe echo-hello-world
 ```
-to run this Task, instantiate it using a TaskRun:
-```
-apiVersion: tekton.dev/v1beta1
-kind: TaskRun
-metadata:
-  name: echo-hello-world-task-run
-spec:
-  taskRef:
-    name: echo-hello-world
-```
-
-save as: helloworld-taskrun.yaml
-run task:
+to run this task:
 ```
 kubectl apply -f helloworld-taskrun.yaml
 ```
+check status:
+```
+tkn taskrun describe echo-hello-world-task-run
+```
+
 
 #### <font color='red'>Access Tekton + Argo CD + Tests</font>
 

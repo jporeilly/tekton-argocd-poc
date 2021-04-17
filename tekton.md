@@ -126,11 +126,15 @@ the tests run:
 
 to access Tekton dashboard:
 ```
-kubectl proxy --port=8080
+kubectl patch service tekton-dashboard -n cicd -p '{"spec": {"type": "LoadBalancer"}}'
+```
+verify external-ip:
+```
+kubectl get svc -n cicd
 ```
 access the pipline:
 
-  > in browser: http://localhost:8080/api/v1/namespaces/tekton-pipelines/services/tekton-dashboard:http/proxy/#/namespaces/cicd/pipelineruns
+  > in browser: http://[external-ip]:9097
 
 watch the video..
 

@@ -93,28 +93,33 @@ Simple Hello World example to show you how to:
 * use a TaskRun to instantiate and execute a Task outside of a Pipeline
 * use a PipelineRun to instantiate and run a Pipeline containing your Tasks
 
-create a task
-```
-apiVersion: tekton.dev/v1beta1
-kind: Task
-metadata:
-  name: echo-hello-world
-spec:
-  steps:
-    - name: echo
-      image: ubuntu
-      command:
-        - echo
-      args:
-        - "Hello World"
-```
 A Task defines a series of steps that run in a desired order and complete a set amount of build work. Every Task runs as a Pod on your Kubernetes cluster with each step as its own container. 
 
-save as: helloworld-task.yaml
+ helloworld-task.yaml
+to register the task:
+```
+kubectl apply -f helloworld-task.yaml
+```
+details about your created Task:
+```
+tkn task describe echo-hello-world
+```
+to run this Task, instantiate it using a TaskRun:
+```
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: echo-hello-world-task-run
+spec:
+  taskRef:
+    name: echo-hello-world
+```
 
-
-
-
+save as: helloworld-taskrun.yaml
+run task:
+```
+kubectl apply -f helloworld-taskrun.yaml
+```
 
 #### <font color='red'>Access Tekton + Argo CD + Tests</font>
 

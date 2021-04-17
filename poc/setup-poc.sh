@@ -24,7 +24,7 @@ initK8SResources() {
   kubectl create namespace cicd | true
   kubectl create namespace argocd | true
   kubectl apply -f https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
-  kubectl apply -f conf/k8s -n cicd
+   kubectl apply -f conf/k8s -n cicd
   kubectl apply -f https://github.com/tektoncd/dashboard/releases/latest/download/tekton-dashboard-release.yaml
   kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
@@ -82,7 +82,7 @@ waitForNexusReady() {
   nexus_pod_name=$(kubectl get pod -l app=nexus -n cicd --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
 
   echo "   ---> Nexus pod name: $nexus_pod_name"
-  printf '   ---> Waiting for Nexus be ready'
+  printf '   ---> Waiting for Nexus...'
   while [[ ! $(kubectl exec "$nexus_pod_name" -n cicd -- cat /nexus-data/admin.password) ]] ;do
     printf '.'
     sleep 10
@@ -100,6 +100,7 @@ setupNexus() {
   updateAdminPassword
 }
 
+# resources required for build
 installPoCResources() {
   echo ""
   echo "Deploying configmaps, tasks, pipelines..."

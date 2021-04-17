@@ -134,10 +134,10 @@ watch the video..!
 
 to access the ArgoD dashboard:
 ```
-kubectl port-forward svc/argocd-server -n argocd 9080:80
+kubectl port-forward svc/argocd-server -n argocd 9070:443
 ```
 
-  > in browser: https://localhost:9080
+  > in browser: https://localhost:9070
 
 user: admin
 password: 

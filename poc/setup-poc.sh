@@ -24,7 +24,7 @@ initK8SResources() {
   kubectl create namespace cicd | true
   kubectl create namespace argocd | true
   kubectl apply -f https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
-   kubectl apply -f conf/k8s -n cicd
+  kubectl apply -f conf/k8s -n cicd
   kubectl apply -f https://github.com/tektoncd/dashboard/releases/latest/download/tekton-dashboard-release.yaml
   kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
@@ -106,7 +106,7 @@ installPoCResources() {
   echo "Deploying configmaps, tasks, pipelines..."
   kubectl create cm maven-settings --from-file=conf/maven/settings.xml -n cicd
   kubectl apply -f conf/argocd
-  kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/git-clone/0.2/git-clone.yaml -n cicd
+  kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/git-clone/0.3/git-clone.yaml -n cicd
   kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/maven/0.2/maven.yaml -n cicd
   kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/buildah/0.2/buildah.yaml -n cicd
   kubectl apply -f conf/tekton/git-access -n cicd

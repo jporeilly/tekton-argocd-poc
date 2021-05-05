@@ -7,8 +7,8 @@ metadata:
   namespace: argocd
 type: Opaque
 stringData:
-  username: jporeilly
-  password: Pentaho2020# ## INSERT TOKEN HERE
+  username: [username]]
+  password: [password]]
 ---
 apiVersion: v1
 kind: ConfigMap
